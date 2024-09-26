@@ -6,8 +6,8 @@ import { menu_list } from '../../assets/assets';
 // eslint-disable-next-line react/prop-types
 const ExploreMenu = ({ category, setCategory }) => {
 
-  const handleScroll = (menu_name) => {
-    const targetSection = document.getElementById(menu_name);
+  const handleScroll = () => {
+    const targetSection = document.getElementById('food-display'); // Targeting the #food-display section
     if (targetSection) {
       targetSection.scrollIntoView({
         behavior: 'smooth', // Smooth scrolling
@@ -27,7 +27,7 @@ const ExploreMenu = ({ category, setCategory }) => {
             <div 
               onClick={() => {
                 setCategory(prev => prev === item.menu_name ? "All" : item.menu_name);
-                handleScroll(item.menu_name); // Scroll to the related section
+                handleScroll(); // Scroll to the #food-display section
               }} 
               key={index} 
               className='explore-menu-list-item card' // Added 'card' class

@@ -23,7 +23,7 @@ const Footer = () => {
 
                 </div>
                 <div className="footer-content-center">
-<h2>COMPANAY</h2>
+<h2>COMPANY</h2>
 <ul>
     <li>Home</li>
     <li>About Us</li>
@@ -43,7 +43,7 @@ const Footer = () => {
 
             </div>
 <hr />
-<p className="footer-copyright">Copuright 2024 @ Deligro.com - All Right Reserved.</p>
+<p className="footer-copyright">Copyright 2024 @ Deligro.com - All Right Reserved.</p>
         </div>
     )
 }

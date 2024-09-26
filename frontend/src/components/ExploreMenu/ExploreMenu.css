@@ -1,8 +1,7 @@
-/* Add this to your ExploreMenu.css or global CSS file */
 html {
     scroll-behavior: smooth;
-  }
-  
+}
+
 .explore-menu {
     display: flex;
     flex-direction: column;
@@ -38,7 +37,7 @@ html {
 .explore-menu-list-item.card {
     width: 300px; /* Width of the card */
     height: 200px; /* Height of the card */
-    background-color: white; /* Card background color */
+    background-color: rgb(255, 255, 255); /* Card background color */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add box-shadow for card effect */
     border-radius: 12px; /* Round corners */
     padding: 15px; /* Add padding */
@@ -69,7 +68,6 @@ html {
     font-weight: 700;
 }
 
-
 .explore-menu hr {
     margin: 10px 0px;
     height: 2px;
@@ -81,12 +79,12 @@ html {
     border: 4px solid tomato;
     padding: 2px;
 }
+
 .menu-timings {
     font-size: 0.69rem;
     color: #919090;
     margin-top: 16px;
-  }
-  
+}
 
 @media (max-width: 1050px) {
     .explore-menu-text {
@@ -105,7 +103,74 @@ html {
     }
 }
 
+@media (max-width: 480px) {
+    .explore-menu-list-item {
+        flex: 1 0 calc(50% - 10px); /* 2 items per row for mobile screens */
+        width: 100%; /* Make the cards adapt to the width */
+        height: 180px; /* Adjust the card height for smaller screens */
+    }
+}
 
+@media (max-width: 400px) {
+    .explore-menu-list-item {
+        flex: 1 0 calc(50% - 10px); /* 2 items per row for very small mobile screens */
+        width: calc(50% - 10px); /* Ensure the card width fits for 2 items */
+        height: 160px; /* Adjust the card height to fit smaller screens */
+    }
 
+    .explore-menu-list-item.card img {
+        width: 100px; /* Reduce image size */
+        height: 80px; /* Adjust image height */
+    }
 
+    .explore-menu-list-item.card p {
+        font-size: 14px; /* Reduce text size */
+    }
+}
+
+@media (max-width: 320px) {
+    .explore-menu-list-item {
+        flex: 1 0 calc(50% - 10px); /* 2 items per row for the smallest mobile screens */
+        width: calc(50% - 10px); /* Ensure two cards per row on very small screens */
+        height: 140px; /* Reduce card height further */
+    }
+
+    .explore-menu-list-item.card img {
+        width: 90px; /* Further reduce image size */
+        height: 70px; /* Adjust image height */
+    }
+
+    .explore-menu-list-item.card p {
+        font-size: 12px; /* Reduce text size for small screens */
+    }
+}
+/* new*/
+.explore-menu-title {
+    font-size: 24px; /* Default size */
+    font-weight: 600;
+    color: #262626;
+    margin-bottom: 20px;
+    text-align: center; /* Center-align for all screen sizes */
+}
+
+@media (max-width: 700px) {
+    .explore-menu-title {
+        font-size: 20px; /* Slightly smaller for tablet screens */
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    .explore-menu-title {
+        font-size: 18px; /* Smaller font size for small mobile screens */
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 320px) {
+    .explore-menu-title {
+        font-size: 16px; /* Even smaller for very small screens */
+        margin-bottom: 8px;
+    }
+}
 

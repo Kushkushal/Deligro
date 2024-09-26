@@ -19,6 +19,7 @@ import menu_14 from './menu_14.jpg';
 import menu_15 from './menu_15.jpg';
 import menu_16 from './menu_16.jpg';
 import menu_17 from './menu_17.jpg';
+import menu_18 from './menu_18.jpg';
 
 
 
@@ -170,9 +171,10 @@ export const menu_list = [
         menu_image: menu_16,
         timings: "7:00 PM - 10:00 PM"
     },
+   
     {
         menu_name: "S.M Chicken Center",
-        menu_image: menu_17,
+        menu_image: menu_18,
         timings: "8:00 AM - 10:00 PM"
     }
 ]

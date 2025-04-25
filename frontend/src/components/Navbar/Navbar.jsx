@@ -4,8 +4,11 @@ import './Navbar.css'
 import { assets } from '../../assets/assets'
 import {Link, useNavigate} from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
+import DonationCard from '../Donation/donation';
 const Navbar = ({setShowLogin}) => {
 const [menu,setMenu] = useState("menu");
+
+const [donations,setdonations] = useState(false)
 
 const {getTotalCartAmount,token,setToken} = useContext(StoreContext);
 
@@ -20,12 +23,19 @@ const logout=()=>{
 
 }
   return (
+    <>
+    {
+    donations && <DonationCard onClose={() => setdonations(false)} />}
     <div className='navbar'>
      <Link to='/'> <img src={assets.logo} alt="" className="logo" /></Link>
       <ul className="navbar-menu">
         <Link to="/" onClick={()=>setMenu("home")} className={menu==="home"?"active":""}>Home</Link>
         <a href="#explore-menu" onClick={()=>setMenu("menu")} className={menu==="menu"?"active":""}>Menu</a>
         <a href="#app-download" onClick={()=>setMenu("mobile-app")} className={menu==="mobile-app"?"active":""}>Mobile App</a>
+        <a href="#" onClick={() => {
+            setMenu("donation-module")
+            setdonations(true)
+          }} className={menu === "donation-module" ? "active" : ""}>Donation</a>
         <a href="#footer" onClick={()=>setMenu("contact-us")} className={menu==="contact-us"?"active":""}>Contact Us</a>
       </ul>
       <div className="navbar-right">
@@ -52,6 +62,7 @@ const logout=()=>{
            
         </div>
       </div>
+      </>
     
   )
 }

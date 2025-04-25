@@ -1,6 +1,7 @@
 import basket_icon from './basket_icon.png'
 import logo from './logo.png'
 import header_img from './header_img.png'
+import image from './image.png'
 import search_icon from './search_icon.png'
 import menu_1 from './menu_1.jpg'
 import menu_2 from './menu_2.jpg'
@@ -71,6 +72,7 @@ import parcel_icon from './parcel_icon.png'
 export const assets = {
     logo,
     basket_icon,
+    image,
     header_img,
     search_icon,
     rating_starts,
@@ -179,7 +181,94 @@ export const menu_list = [
     }
 ]
 
-
+export const menu_list2 = [
+    {
+        menu_name: "Kushal",
+        menu_image: menu_1,
+        timings: "8:30 AM - 10:00 PM"
+    },
+    {
+        menu_name: "Sharanya's Kitchen",
+        menu_image: menu_2,
+        timings: "8:00 AM - 10:00 PM"
+    },
+    {
+        menu_name: "Desi Food Box",
+        menu_image: menu_3,
+        timings: "12:00 PM - 10:00 PM"
+    },
+    {
+        menu_name: "Breakfast Stall",
+        menu_image: menu_4,
+        timings: "8:00 AM - 12:30 PM"
+    },
+    {
+        menu_name: "Desi Hutt",
+        menu_image: menu_5,
+        timings: "4:00 PM - 10:00 PM"
+    },
+    {
+        menu_name: "Swad Vipasa",
+        menu_image: menu_6,
+        timings: "8:00 AM - 9:00 PM"
+    },
+    {
+        menu_name: "Chicken Little",
+        menu_image: menu_7,
+        timings: "1:00 PM - 10:30 PM"
+    },
+    {
+        menu_name: "Sri Lakshmi Hotel",
+        menu_image: menu_8,
+        timings: "8:00 AM - 10:00 PM"
+    },
+    {
+        menu_name: "Katti Rolls",
+        menu_image: menu_9,
+        timings: "2:00 PM - 10:00 PM"
+    },
+    {
+        menu_name: "G.S Military Hotel",
+        menu_image: menu_10,
+        timings: "12:00 PM - 10:00 PM"
+    },
+    {
+        menu_name: "Bite & Beans Cafe",
+        menu_image: menu_11,
+        timings: "9:00 AM - 10:00 PM"
+    },
+    {
+        menu_name: "Chats Corner",
+        menu_image: menu_12,
+        timings: "1:00 PM - 9:00 PM"
+    },
+    {
+        menu_name: "Bake & Cafe",
+        menu_image: menu_13,
+        timings: "8:00 AM - 10:00 PM"
+    },
+    {
+        menu_name: "Juice Junction",
+        menu_image: menu_14,
+        timings: "4:00 PM - 9:30 PM"
+    },
+    {
+        menu_name: "Tandoori Chai",
+        menu_image: menu_15,
+        timings: "6:00 PM - 10:00 PM"
+    },
+    {
+        menu_name: "Fish Kabab Center",
+        menu_image: menu_16,
+        timings: "7:00 PM - 10:00 PM"
+    },
+   
+    {
+        menu_name: "S.M Chicken Center",
+        menu_image: menu_18,
+        timings: "8:00 AM - 10:00 PM"
+    }
+]
     export const food_list = [
         // Atta, Maida & Besan
         {

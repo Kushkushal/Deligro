@@ -119,7 +119,7 @@ const DonationCard = ({ onClose }) => {
       setTimeout(() => {
         setShowThankYou(false);
         onClose(); // Close the card after 2 seconds
-      }, 7000);
+      }, 2000);
     }
   };
 

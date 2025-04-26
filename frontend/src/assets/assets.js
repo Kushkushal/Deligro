@@ -183,17 +183,17 @@ export const menu_list = [
 
 export const menu_list2 = [
     {
-        menu_name: "Kushal",
+        menu_name: "Demo1",
         menu_image: menu_1,
         timings: "8:30 AM - 10:00 PM"
     },
     {
-        menu_name: "Sharanya's Kitchen",
+        menu_name: "Demo2",
         menu_image: menu_2,
         timings: "8:00 AM - 10:00 PM"
     },
     {
-        menu_name: "Desi Food Box",
+        menu_name: "Demo3",
         menu_image: menu_3,
         timings: "12:00 PM - 10:00 PM"
     },

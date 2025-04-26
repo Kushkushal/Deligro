@@ -101,7 +101,7 @@ export const menu_list = [
     {
         menu_name: "Sharanya's Kitchen",
         menu_image: menu_2,
-        timings: "8:00 AM - 10:00 PM"
+        timings: "1:00 PM - 10:00 PM"
     },
     {
         menu_name: "Desi Food Box",
@@ -269,6 +269,7 @@ export const menu_list2 = [
         timings: "8:00 AM - 10:00 PM"
     }
 ]
+
     export const food_list = [
         // Atta, Maida & Besan
         {

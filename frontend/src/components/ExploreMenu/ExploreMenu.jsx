@@ -21,7 +21,7 @@ const ExploreMenu = ({ category, setCategory }) => {
   const b = menu_list;
 
   const dataVars = {
-    You:a,
+    You: a,
     Koramangala: a,
     Madiwala: a,
     Silkboard: b,
@@ -33,7 +33,7 @@ const ExploreMenu = ({ category, setCategory }) => {
     Chandhapurpa: a,
     Anekal: b
   };
-  
+
 
   const matchedKeys = Object.keys(dataVars).filter(key =>
     selectedLocation.toLowerCase().includes(key.toLowerCase())
@@ -66,7 +66,7 @@ const ExploreMenu = ({ category, setCategory }) => {
     <div className='explore-menu' id='explore-menu'>
       <div className="explore-menu-header">
         <h2 className="explore-menu-title">
-        Hotels Near {selectedLocation === "You" ? "You" : selectedLocation}
+          Hotels Near {selectedLocation === "You" ? "You" : selectedLocation}
           <div className="location-wrapper">
             <FaMapMarkerAlt
               className="location-icon"
@@ -83,41 +83,42 @@ const ExploreMenu = ({ category, setCategory }) => {
             )}
           </div>
         </h2>
-        
+
       </div>
 
       {showDropdown && (
-  <div className="modal-overlay" onClick={() => setShowDropdown(false)}>
-    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-      <h3>Select Your Location</h3>
-      <div style={{ marginTop: '20px' }}>
-        <select
-          value={selectedLocation}
-          onChange={e => {
-            setSelectedLocation(e.target.value);
-            setShowDropdown(false);
-          }}
-        >
-            <option value="HSR Layout">Koramangala</option>
-            <option value="HSR Layout">Madiwala</option>
-            <option value="Silkboard">Silkboard</option>
-          <option value="HSR Layout">HSR Layout</option>
-          <option value="BTM Layout">BTM Layout</option>
-          <option value="BTM Layout">Bommanahalli</option>
-          <option value="BTM Layout">Electronic City</option>
-          <option value="BTM Layout">Bommasandra</option>
-          <option value="Chandhapurpa">Chandhapurpa</option>
-          <option value="Silkboard">Anekal</option>
-          
-        </select>
-      </div>
-      {/* Note below select */}
-      <p style={{ marginTop: '15px', fontSize: '14px', color: 'gray' }}>
-       <b>Note:</b>  This service is available only in Bangalore.
-      </p>
-    </div>
-  </div>
-)}
+        <div className="modal-overlay" onClick={() => setShowDropdown(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h3>Select Your Location</h3>
+            <div style={{ marginTop: '20px' }}>
+              <select
+                value={selectedLocation}
+                onChange={e => {
+                  setSelectedLocation(e.target.value);
+                  setShowDropdown(false);
+                }}
+              >
+                <option value="Koramangala">Koramangala</option>
+                <option value="Madiwala">Madiwala</option>
+                <option value="Silkboard">Silkboard</option>
+                <option value="HSR Layout">HSR Layout</option>
+                <option value="BTM Layout">BTM Layout</option>
+                <option value="Bommanahalli">Bommanahalli</option>
+                <option value="Electronic City">Electronic City</option>
+                <option value="Bommasandra">Bommasandra</option>
+                <option value="Chandhapurpa">Chandhapurpa</option>
+                <option value="Anekal">Anekal</option>
+
+
+              </select>
+            </div>
+            {/* Note below select */}
+            <p style={{ marginTop: '15px', fontSize: '14px', color: 'gray' }}>
+              <b>Note:</b>  This service is available only in Bangalore.
+            </p>
+          </div>
+        </div>
+      )}
 
 
       <div className="explore-menu-list">

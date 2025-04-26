@@ -1,9 +1,15 @@
-import React from 'react';
+// eslint-disable-next-line no-unused-vars
+import React, { useState } from 'react';
 import './ExploreMenu.css';
 import { menu_list, menu_list2 } from '../../assets/assets';
 import { toast } from 'react-toastify';
+import { FaMapMarkerAlt } from 'react-icons/fa';
 
 const ExploreMenu = ({ category, setCategory }) => {
+  const [selectedLocation, setSelectedLocation] = useState("You");
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(true);
+
   const handleScroll = () => {
     const targetSection = document.getElementById('food-display');
     if (targetSection) {
@@ -13,10 +19,29 @@ const ExploreMenu = ({ category, setCategory }) => {
 
   const a = menu_list2;
   const b = menu_list;
-  const inputText = "b";
-  const dataVars = { a, b };
-  const matchedKeys = Object.keys(dataVars).filter(key => inputText.includes(key));
-  let finalList = matchedKeys.length > 0 ? matchedKeys.flatMap(key => dataVars[key]) : [];
+
+  const dataVars = {
+    You:a,
+    Koramangala: a,
+    Madiwala: a,
+    Silkboard: b,
+    "HSR Layout": b,
+    "BTM Layout": a,
+    Bommanahalli: a,
+    "Electronic City": a,
+    Bommasandra: a,
+    Chandhapurpa: a,
+    Anekal: b
+  };
+  
+
+  const matchedKeys = Object.keys(dataVars).filter(key =>
+    selectedLocation.toLowerCase().includes(key.toLowerCase())
+  );
+
+  let finalList = matchedKeys.length > 0
+    ? matchedKeys.flatMap(key => dataVars[key])
+    : [];
 
   const toMinutes = timeStr => {
     const [time, modifier] = timeStr.trim().split(" ");
@@ -39,7 +64,62 @@ const ExploreMenu = ({ category, setCategory }) => {
 
   return (
     <div className='explore-menu' id='explore-menu'>
-      <h2 className="explore-menu-title">Hotels Near You</h2>
+      <div className="explore-menu-header">
+        <h2 className="explore-menu-title">
+        Hotels Near {selectedLocation === "You" ? "You" : selectedLocation}
+          <div className="location-wrapper">
+            <FaMapMarkerAlt
+              className="location-icon"
+              onClick={() => {
+                setShowDropdown(true);
+                setShowTooltip(false);
+              }}
+            />
+            {showTooltip && !showDropdown && (
+              <div className="location-tooltip">
+                Click here to select your location
+                <div className="tooltip-arrow" />
+              </div>
+            )}
+          </div>
+        </h2>
+        
+      </div>
+
+      {showDropdown && (
+  <div className="modal-overlay" onClick={() => setShowDropdown(false)}>
+    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      <h3>Select Your Location</h3>
+      <div style={{ marginTop: '20px' }}>
+        <select
+          value={selectedLocation}
+          onChange={e => {
+            setSelectedLocation(e.target.value);
+            setShowDropdown(false);
+          }}
+        >
+            <option value="HSR Layout">Koramangala</option>
+            <option value="HSR Layout">Madiwala</option>
+            <option value="Silkboard">Silkboard</option>
+          <option value="HSR Layout">HSR Layout</option>
+          <option value="BTM Layout">BTM Layout</option>
+          <option value="BTM Layout">Bommanahalli</option>
+          <option value="BTM Layout">Electronic City</option>
+          <option value="BTM Layout">Bommasandra</option>
+          <option value="Chandhapurpa">Chandhapurpa</option>
+          <option value="Silkboard">Anekal</option>
+          
+        </select>
+      </div>
+      {/* Note below select */}
+      <p style={{ marginTop: '15px', fontSize: '14px', color: 'gray' }}>
+       <b>Note:</b>  This service is available only in Bangalore.
+      </p>
+    </div>
+  </div>
+)}
+
+
       <div className="explore-menu-list">
         {finalList.length > 0 ? (
           finalList.map((item, index) => (

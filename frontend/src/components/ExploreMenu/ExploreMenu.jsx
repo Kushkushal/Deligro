@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './ExploreMenu.css';
 import { menu_list, menu_list2 } from '../../assets/assets';
 import { toast } from 'react-toastify';
@@ -9,23 +9,6 @@ const ExploreMenu = ({ category, setCategory }) => {
   const [selectedLocation, setSelectedLocation] = useState("You");
   const [showDropdown, setShowDropdown] = useState(false);
   const [showTooltip, setShowTooltip] = useState(true);
-
-  // App Install Popup States
-  const [showInstallPopup, setShowInstallPopup] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowInstallPopup(true);
-    }, 2000); // Show after 2 seconds
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  const handleAppDownload = () => {
-    window.location.href = 'https://deligro.onrender.com/app-release.apk';
- // <-- Update this path with your actual APK file
-    setShowInstallPopup(false);
-  };
 
   const handleScroll = () => {
     const targetSection = document.getElementById('food-display');
@@ -50,6 +33,7 @@ const ExploreMenu = ({ category, setCategory }) => {
     Chandhapurpa: a,
     Anekal: b
   };
+
 
   const matchedKeys = Object.keys(dataVars).filter(key =>
     selectedLocation.toLowerCase().includes(key.toLowerCase())
@@ -80,20 +64,6 @@ const ExploreMenu = ({ category, setCategory }) => {
 
   return (
     <div className='explore-menu' id='explore-menu'>
-      {/* App Install Popup */}
-      {showInstallPopup && (
-        <div className="install-popup">
-          <div className="popup-content">
-            <h3>Install Our App!</h3>
-            <p>Get a better experience with our mobile app.</p>
-            <div style={{ marginTop: '15px' }}>
-              <button onClick={handleAppDownload} className="download-button">Download App</button>
-              <button onClick={() => setShowInstallPopup(false)} className="later-button">Maybe Later</button>
-            </div>
-          </div>
-        </div>
-      )}
-
       <div className="explore-menu-header">
         <h2 className="explore-menu-title">
           Hotels Near {selectedLocation === "You" ? "You" : selectedLocation}
@@ -113,6 +83,7 @@ const ExploreMenu = ({ category, setCategory }) => {
             )}
           </div>
         </h2>
+
       </div>
 
       {showDropdown && (
@@ -137,14 +108,18 @@ const ExploreMenu = ({ category, setCategory }) => {
                 <option value="Bommasandra">Bommasandra</option>
                 <option value="Chandhapurpa">Chandhapurpa</option>
                 <option value="Anekal">Anekal</option>
+
+
               </select>
             </div>
+            {/* Note below select */}
             <p style={{ marginTop: '15px', fontSize: '14px', color: 'gray' }}>
-              <b>Note:</b> This service is available only in Bangalore.
+              <b>Note:</b>  This service is available only in Bangalore.
             </p>
           </div>
         </div>
       )}
+
 
       <div className="explore-menu-list">
         {finalList.length > 0 ? (

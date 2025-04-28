@@ -1,6 +1,9 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect } from 'react';
+import React, {useContext, useState, useEffect } from 'react';
 import './donation.css';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { StoreContext } from '../../context/StoreContext';
 
 const DonationCard = ({ onClose }) => {
   const [activeCategory, setActiveCategory] = useState(null);
@@ -27,6 +30,7 @@ const DonationCard = ({ onClose }) => {
 
   const [sizes, setSizes] = useState([]);
 
+    const { token, url } = useContext(StoreContext);
 
   // Handle Next button logic
   const handleNext2 = () => {
@@ -82,14 +86,18 @@ const DonationCard = ({ onClose }) => {
     setIsTotalItemsEmpty(false);
     setShowUserDetails(true);
   };
-  const handleNext1 = () => {
-    if (!groceryItem) {
+  const handleNext1 = () => {  // Pass the event 'e' as argument
+  // Prevent default form submission behavior
+  
+    if (!isTotalItemsEmpty1) {
       setIsTotalItemsEmpty1(true);
       return;
     }
-    setIsTotalItemsEmpty1(false);
+    
+    setIsTotalItemsEmpty(false);
     setShowUserDetails(true);
   };
+  
 
   const handleBack = () => {
     setShowUserDetails(false);
@@ -102,7 +110,7 @@ const DonationCard = ({ onClose }) => {
     return '';
   };
 
-  const handleFinalSubmit = () => {
+  const handleFinalSubmit = async () => {
     const newErrors = {};
     if (!firstName.trim()) newErrors.firstName = true;
     if (!lastName.trim()) newErrors.lastName = true;
@@ -113,6 +121,42 @@ const DonationCard = ({ onClose }) => {
     if (!description.trim()) newErrors.description = true;
 
     setErrors(newErrors);
+
+    const fullDonationData = {
+      donationType: 'Groceries',
+      formData: {
+        groceryItem,
+        groceryQuantity,
+        expiryConfirmed,
+        groceryNotes
+      },
+      userDetails: {
+        firstName,
+        lastName,
+        address,
+        city,
+        state,
+        phone,
+        description
+      }
+    };
+  
+    try {
+      const response = await axios.post(url + "/api/donation/place", fullDonationData, { headers: { token } });
+      if (response.data.success) {
+        toast.success('Donation Placed Successfully!');
+        setTimeout(() => {
+          // navigate('/');
+        }, 1200);
+      } else {
+        toast.error('Error placing donation');
+      }
+    } catch (error) {
+      toast.error('Network error, please try again');
+      console.error('Error submitting donation:', error);
+    }
+
+    
 
     if (Object.keys(newErrors).length === 0) {
       setShowThankYou(true); // Show thank you text

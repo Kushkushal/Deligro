@@ -19,6 +19,9 @@ const DonationCard = ({ onClose }) => {
   const [groceryItem, setGroceryItem] = useState('');
   const [groceryQuantity, setGroceryQuantity] = useState('');
   const [expiryConfirmed, setExpiryConfirmed] = useState(false);
+  const [grocerydonation, setgrocerydonation ] = useState(false);
+  const [fooddonation, setfooddonation ] = useState(false);
+  const [clothesdonation, setclothesdonation ] = useState(false);
 
   const [groceryNotes, setGroceryNotes] = useState('');
 
@@ -36,6 +39,7 @@ const DonationCard = ({ onClose }) => {
   const handleNext2 = () => {
     setIsTotalItemsEmpty(false);
     setShowUserDetails(true);
+    setclothesdonation(true);
     // Logic for handling the next step, e.g., validation
     // You can add validation to check if all required fields are filled.
   };
@@ -61,7 +65,7 @@ const DonationCard = ({ onClose }) => {
     const now = new Date();
     const currentHour = now.getHours();
 
-    if (selectedTime === 'Morning') return currentHour >= 7 && currentHour <= 9;
+    if (selectedTime === 'Morning') return currentHour >= 7 && currentHour <= 10;
     if (selectedTime === 'Afternoon') return currentHour >= 12 && currentHour <= 14;
     if (selectedTime === 'Night') return currentHour >= 19 && currentHour <= 21;
 
@@ -83,18 +87,18 @@ const DonationCard = ({ onClose }) => {
       setIsTotalItemsEmpty(true);
       return;
     }
+    setfooddonation(true);
     setIsTotalItemsEmpty(false);
     setShowUserDetails(true);
   };
-  const handleNext1 = () => {  // Pass the event 'e' as argument
-  // Prevent default form submission behavior
+  const handleNext1 = () => {  
   
-    if (!isTotalItemsEmpty1) {
+    if (!groceryItem) {
       setIsTotalItemsEmpty1(true);
       return;
     }
-    
-    setIsTotalItemsEmpty(false);
+    setgrocerydonation(true);
+    setIsTotalItemsEmpty1(false);
     setShowUserDetails(true);
   };
   
@@ -121,7 +125,8 @@ const DonationCard = ({ onClose }) => {
     if (!description.trim()) newErrors.description = true;
 
     setErrors(newErrors);
-
+if(grocerydonation){
+  console.log("Groceries")
     const fullDonationData = {
       donationType: 'Groceries',
       formData: {
@@ -147,7 +152,83 @@ const DonationCard = ({ onClose }) => {
         toast.success('Donation Placed Successfully!');
         setTimeout(() => {
           // navigate('/');
-        }, 1200);
+        }, 1000);
+      } else {
+        toast.error('Error placing donation');
+      }
+    } catch (error) {
+      toast.error('Network error, please try again');
+      console.error('Error submitting donation:', error);
+    }
+  }
+
+    //Food
+    else if(fooddonation){
+
+    console.log("Food")
+    const fullDonationData1 = {
+      donationType: 'Food',
+  formData: {
+    selectedTime,
+    locationType,
+    quantityRange,
+    totalItems
+  },
+      userDetails: {
+        firstName,
+        lastName,
+        address,
+        city,
+        state,
+        phone,
+        description
+      }
+    };
+  
+    try {
+      const response = await axios.post(url + "/api/donation/place", fullDonationData1, { headers: { token } });
+      if (response.data.success) {
+        toast.success('Donation Placed Successfully!');
+        setTimeout(() => {
+          // navigate('/');
+        }, 1000);
+      } else {
+        toast.error('Error placing donation');
+      }
+    } catch (error) {
+      toast.error('Network error, please try again');
+      console.error('Error submitting donation:', error);
+    }
+  }
+
+  else if(clothesdonation){
+    console.log("Clothes")
+    const fullDonationData2 = {
+      donationType: 'Clothes',
+  formData: {
+     selectedGender,
+     ageDifference,
+     sizes,
+     clothingNotes
+  },
+      userDetails: {
+        firstName,
+        lastName,
+        address,
+        city,
+        state,
+        phone,
+        description
+      }
+    };
+  
+    try {
+      const response = await axios.post(url + "/api/donation/place", fullDonationData2, { headers: { token } });
+      if (response.data.success) {
+        toast.success('Donation Placed Successfully!');
+        setTimeout(() => {
+          // navigate('/');
+        }, 1000);
       } else {
         toast.error('Error placing donation');
       }
@@ -156,12 +237,14 @@ const DonationCard = ({ onClose }) => {
       console.error('Error submitting donation:', error);
     }
 
-    
-
+  }
     if (Object.keys(newErrors).length === 0) {
       setShowThankYou(true); // Show thank you text
       setTimeout(() => {
         setShowThankYou(false);
+        setgrocerydonation(false);
+        setfooddonation(false);
+        setclothesdonation(false);
         onClose(); // Close the card after 2 seconds
       }, 2000);
     }

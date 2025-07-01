@@ -68,3 +68,30 @@ margin-top: -15px;
     font-weight: 500;
     cursor: pointer;
 }
+.custom-alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: white;
+  z-index: 9999;
+  animation: fadeInOut 4s ease forwards;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.custom-alert.error {
+  background-color: #f44336;
+}
+
+.custom-alert.success {
+  background-color: #4caf50;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(-10px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
+}

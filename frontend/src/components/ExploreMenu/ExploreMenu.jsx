@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 
 const ExploreMenu = ({ category, setCategory }) => {
+
   const [selectedLocation, setSelectedLocation] = useState("You");
   const [showDropdown, setShowDropdown] = useState(false);
   const [showTooltip, setShowTooltip] = useState(true);

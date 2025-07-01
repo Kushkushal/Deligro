@@ -20,7 +20,7 @@ const PlaceOrder = () => {
     phone: ""
   });
 
-  const [isCashOnDelivery, setIsCashOnDelivery] = useState(false);
+  const [isCashOnDelivery, setIsCashOnDelivery] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false); // State to manage submission
 
   const navigate = useNavigate();
@@ -132,6 +132,7 @@ const PlaceOrder = () => {
             <div className="checkbox-container">
               <input
                 type="checkbox"
+                required
                 checked={isCashOnDelivery}
                 onChange={onCheckboxChange}
               />

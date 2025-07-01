@@ -7,6 +7,7 @@ import 'dotenv/config'
 import cartRouter from "./routes/cartRoute.js"
 import orderRouter from "./routes/orderRoute.js"
 import donationRouter from './routes/donationRoutes.js';
+import powerBIRouter from "./routes/powerBIRoute.js";
 
 
 
@@ -28,6 +29,7 @@ app.use("/api/user",userRouter)
 app.use("/api/cart",cartRouter)
 app.use("/api/order",orderRouter)
 app.use('/api/donation', donationRouter);
+app.use("/api/powerbi", powerBIRouter); // Add this line
 
 
 app.get("/",(req,res)=>{

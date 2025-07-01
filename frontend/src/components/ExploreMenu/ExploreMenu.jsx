@@ -1,48 +1,10 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from 'react';
+import React from 'react';
 import './ExploreMenu.css';
-import { menu_list, menu_list2 } from '../../assets/assets';
+import { menu_list } from '../../assets/assets';
 import { toast } from 'react-toastify';
-import { FaMapMarkerAlt } from 'react-icons/fa';
 
 const ExploreMenu = ({ category, setCategory }) => {
-
-  const [selectedLocation, setSelectedLocation] = useState("You");
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [showTooltip, setShowTooltip] = useState(true);
-
-  const handleScroll = () => {
-    const targetSection = document.getElementById('food-display');
-    if (targetSection) {
-      targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
-  const a = menu_list2;
-  const b = menu_list;
-
-  const dataVars = {
-    You: a,
-    Koramangala: a,
-    Madiwala: a,
-    Silkboard: b,
-    "HSR Layout": b,
-    "BTM Layout": a,
-    Bommanahalli: a,
-    "Electronic City": a,
-    Bommasandra: a,
-    Chandhapurpa: a,
-    Anekal: b
-  };
-
-
-  const matchedKeys = Object.keys(dataVars).filter(key =>
-    selectedLocation.toLowerCase().includes(key.toLowerCase())
-  );
-
-  let finalList = matchedKeys.length > 0
-    ? matchedKeys.flatMap(key => dataVars[key])
-    : [];
 
   const toMinutes = timeStr => {
     const [time, modifier] = timeStr.trim().split(" ");
@@ -55,7 +17,7 @@ const ExploreMenu = ({ category, setCategory }) => {
   const now = new Date();
   const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
-  finalList = finalList.map(item => {
+  const finalList = menu_list.map(item => {
     const [start, end] = item.timings.split(" - ");
     const startMin = toMinutes(start);
     const endMin = toMinutes(end);
@@ -63,64 +25,18 @@ const ExploreMenu = ({ category, setCategory }) => {
     return { ...item, isOpen };
   });
 
+  const handleScroll = () => {
+    const targetSection = document.getElementById('food-display');
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <div className='explore-menu' id='explore-menu'>
       <div className="explore-menu-header">
-        <h2 className="explore-menu-title">
-          Hotels Near {selectedLocation === "You" ? "You" : selectedLocation}
-          <div className="location-wrapper">
-            <FaMapMarkerAlt
-              className="location-icon"
-              onClick={() => {
-                setShowDropdown(true);
-                setShowTooltip(false);
-              }}
-            />
-            {showTooltip && !showDropdown && (
-              <div className="location-tooltip">
-                Click here to select your location
-                <div className="tooltip-arrow" />
-              </div>
-            )}
-          </div>
-        </h2>
-
+        <h2 className="explore-menu-title">Hotels Near You</h2>
       </div>
-
-      {showDropdown && (
-        <div className="modal-overlay" onClick={() => setShowDropdown(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h3>Select Your Location</h3>
-            <div style={{ marginTop: '20px' }}>
-              <select
-                value={selectedLocation}
-                onChange={e => {
-                  setSelectedLocation(e.target.value);
-                  setShowDropdown(false);
-                }}
-              >
-                <option value="Koramangala">Koramangala</option>
-                <option value="Madiwala">Madiwala</option>
-                <option value="Silkboard">Silkboard</option>
-                <option value="HSR Layout">HSR Layout</option>
-                <option value="BTM Layout">BTM Layout</option>
-                <option value="Bommanahalli">Bommanahalli</option>
-                <option value="Electronic City">Electronic City</option>
-                <option value="Bommasandra">Bommasandra</option>
-                <option value="Chandhapurpa">Chandhapurpa</option>
-                <option value="Anekal">Anekal</option>
-
-
-              </select>
-            </div>
-            {/* Note below select */}
-            <p style={{ marginTop: '15px', fontSize: '14px', color: 'gray' }}>
-              <b>Note:</b>  This service is available only in Bangalore.
-            </p>
-          </div>
-        </div>
-      )}
-
 
       <div className="explore-menu-list">
         {finalList.length > 0 ? (

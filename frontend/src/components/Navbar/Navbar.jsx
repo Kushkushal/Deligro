@@ -10,7 +10,7 @@ const [menu,setMenu] = useState("menu");
 
 const [donations,setdonations] = useState(false)
 
-const {getTotalCartAmount,token,setToken} = useContext(StoreContext);
+const {token,setToken,getTotalCartQuantity } = useContext(StoreContext);
 
 const navigate = useNavigate();
 
@@ -44,11 +44,16 @@ const logout=()=>{
 
 
         <div className="navbar-search-icon">
-           <Link to='/cart'><img src={assets.basket_icon} alt="" /></Link> 
-            <div className={getTotalCartAmount()===0 ?"":"dot"}>
+  <Link to='/cart'>
+    <img src={assets.cart_icon1} alt="" />
+  </Link>
+  {getTotalCartQuantity() > 0 && (
+    <div className="cart-badge">
+      {getTotalCartQuantity()}
+    </div>
+  )}
+</div>
 
-            </div>
-            </div>
 
             {!token? <button onClick={()=>setShowLogin(true)}>Sign In</button>
             :<div className='navbar-profile'>

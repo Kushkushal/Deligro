@@ -1,5 +1,7 @@
 import basket_icon from './basket_icon.png'
 import logo from './logo.png'
+import cart_icon from './cart_icon.svg'
+import cart_icon1 from './nav_cart_icon.svg'
 import header_img from './header_img.png'
 import image from './image.png'
 import search_icon from './search_icon.png'
@@ -19,7 +21,7 @@ import menu_13 from './menu_13.jpg';
 import menu_14 from './menu_14.jpg';
 import menu_15 from './menu_15.jpg';
 import menu_16 from './menu_16.jpg';
-import menu_17 from './menu_17.jpg';
+
 import menu_18 from './menu_18.jpg';
 
 
@@ -72,6 +74,8 @@ import parcel_icon from './parcel_icon.png'
 export const assets = {
     logo,
     basket_icon,
+    cart_icon,
+    cart_icon1,
     image,
     header_img,
     search_icon,

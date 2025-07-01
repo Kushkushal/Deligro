@@ -57,6 +57,10 @@ const StoreContextProvider = (props) => {
         }
         return totalAmount;
     };
+    const getTotalCartQuantity = () => {
+    return Object.values(cartItems).reduce((total, quantity) => total + quantity, 0);
+};
+
 
     const fetchFoodList = async () => {
         try {
@@ -97,6 +101,7 @@ const StoreContextProvider = (props) => {
         addToCart,
         removeFromCart,
         getTotalCartAmount,
+         getTotalCartQuantity,  // ✅ add this
         url,
         token,
         setToken,

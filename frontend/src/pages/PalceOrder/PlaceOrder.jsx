@@ -11,14 +11,18 @@ const PlaceOrder = () => {
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
-    email: "",
-    street: "",
-    city: "",
-    state: "",
-    zipcode: "",
-    country: "",
+    address: "",
+    room: "",
+    city: "Bangalore",
+    state: "Karnataka",
+    country: "India",
     phone: ""
   });
+
+  const {
+  setCartItems,  // ✅ <-- THIS is what you need
+} = useContext(StoreContext);
+
 
   const [isCashOnDelivery, setIsCashOnDelivery] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false); // State to manage submission
@@ -63,9 +67,10 @@ const PlaceOrder = () => {
         let response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
         if (response.data.success) {
           toast.success('Order Placed');
-          setTimeout(() => {
+            setCartItems({});
+         
             navigate('/');
-          }, 1200); // Redirect to home after 2 seconds
+           // Redirect to home after 2 seconds
         } else {
           toast.error('Error placing order');
         }
@@ -99,14 +104,14 @@ const PlaceOrder = () => {
             <input required name='lastName' onChange={onChangeHandler} value={data.lastName} type="text" placeholder='Last Name' />
           </div>
           
-          <input required name='street' onChange={onChangeHandler} value={data.street} type="text" placeholder='Apartment' />
+          <input required name='address' onChange={onChangeHandler} value={data.address} type="text" placeholder='Address' />
           <div className="multi-field">
-            <input required name='city' onChange={onChangeHandler} value={data.city} type="text" placeholder='Block' />
-            <input required name='state' onChange={onChangeHandler} value={data.state} type="text" placeholder='Room No' />
+            <input name='room' onChange={onChangeHandler} value={data.room} type="text" placeholder='Room/Flat No    (Optional)' />
+            <input required name='city' onChange={onChangeHandler} value="Bangalore" type="text" placeholder='City' />
           </div>
           <div className="multi-field">
-            <input required name='zipcode' onChange={onChangeHandler} value={data.zipcode} type="text" placeholder='City' />
-            <input required name='country' onChange={onChangeHandler} value={data.country} type="text" placeholder='State' />
+            <input required name='state' onChange={onChangeHandler} value="Karnataka" type="text" placeholder='State' />
+            <input required name='country' onChange={onChangeHandler} value="India" type="text" placeholder='Country' />
           </div>
           <input required name='phone' onChange={onChangeHandler} value={data.phone} type="text" placeholder='Phone' />
         </div>

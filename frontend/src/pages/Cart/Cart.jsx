@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import './Cart.css';
 import { StoreContext } from '../../context/StoreContext';
 import { useNavigate } from 'react-router-dom';
+import { assets } from '../../assets/assets';
 
 
 const Cart = () => {
@@ -44,7 +45,12 @@ const Cart = () => {
                     <p>₹{item.price}</p>
                     <p>{cartItems[item._id]}</p>
                     <p>₹{item.price * cartItems[item._id]}</p>
-                    <p onClick={() => removeFromCart(item._id)} className='cross'>X</p>
+<img
+  src={assets.remove}
+  alt="Remove"
+  className="cross"
+  onClick={() => removeFromCart(item._id)}
+/>
                   </div>
                   <hr />
                 </div>

@@ -47,11 +47,10 @@ const logout=()=>{
   <Link to='/cart'>
     <img src={assets.cart_icon1} alt="" />
   </Link>
-  {getTotalCartQuantity() > 0 && (
-    <div className="cart-badge">
-      {getTotalCartQuantity()}
-    </div>
-  )}
+  <div className="cart-badge">
+  {getTotalCartQuantity() || 0}
+</div>
+
 </div>
 
 

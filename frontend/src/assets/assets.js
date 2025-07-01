@@ -1,6 +1,7 @@
 import basket_icon from './basket_icon.png'
 import logo from './logo.png'
 import cart_icon from './cart_icon.svg'
+import remove from './remove_icon.svg'
 import cart_icon1 from './nav_cart_icon.svg'
 import header_img from './header_img.png'
 import image from './image.png'
@@ -76,6 +77,7 @@ export const assets = {
     basket_icon,
     cart_icon,
     cart_icon1,
+    remove,
     image,
     header_img,
     search_icon,

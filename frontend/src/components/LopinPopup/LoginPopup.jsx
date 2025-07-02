@@ -4,6 +4,7 @@ import './LoginPopup.css';
 import { assets } from '../../assets/assets';
 import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginPopup = ({ setShowLogin }) => {
   const { url, setToken } = useContext(StoreContext);
@@ -18,6 +19,7 @@ const LoginPopup = ({ setShowLogin }) => {
   const [alertMsg, setAlertMsg] = useState('');
   const [alertType, setAlertType] = useState('');
   const [isLoading, setIsLoading] = useState(false); // ⬅️ new loading state
+  const [showPassword, setShowPassword] = useState(false);
 
   const onChangeHandler = (event) => {
     const name = event.target.name;
@@ -98,14 +100,35 @@ const LoginPopup = ({ setShowLogin }) => {
             placeholder='Your Email'
             required
           />
-          <input
-            name='password'
-            onChange={onChangeHandler}
-            value={data.password}
-            type="password"
-            placeholder='Password'
-            required
-          />
+       <div style={{ position: 'relative', width: '100%' }}>
+      <input
+        name="password"
+        type={showPassword ? "text" : "password"}
+        value={data.password}
+        onChange={onChangeHandler}
+        placeholder="Password"
+        required
+        style={{
+          width: '100%',
+          padding: '10px 40px 10px 10px', // right padding for icon
+          boxSizing: 'border-box'
+        }}
+      />
+      <span
+        onClick={() => setShowPassword(!showPassword)}
+        style={{
+          position: 'absolute',
+          right: '10px',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          cursor: 'pointer',
+          color: '#555'
+        }}
+      >
+        {showPassword ? <FaEyeSlash /> : <FaEye />}
+      </span>
+    </div>
+
         </div>
 
         <button type='submit' disabled={isLoading}>
